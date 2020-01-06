@@ -81,7 +81,25 @@ pipeline {
             openshift.newApp("springbootapp:prod", "--name=springbootapp-prod").narrow('svc').expose()
           }
         }
+      }  
+      
+      stage('Scan Project') {
+        agent { label 'sonar' }
+        steps {
+            sh "/sonarqube-scanner/bin/sonar-scanner -Dsonar.login=2b321dd18b45751ca0fa5986d14a18d98f450eee"
+        }
       }
+      stage('Gated promotion to staging project') {
+        agent { label 'base' }
+        steps {
+          timeout(time:60, unit:'MINUTES') {
+            input message: "Would you like to promote the image to the staging project?", ok: "Promote"
+          }
+
+        script {
+          openshift.withCluster() {
+            openshift.tag("project-name/project-name:latest", "project-name/project-name:stage")
+          }
     }
   }
 }
