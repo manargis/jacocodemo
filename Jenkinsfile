@@ -95,7 +95,7 @@ pipeline {
     stage('Scan Project') {
 		agent { label 'sonar' }
         steps {
-            sh "/sonarqube-scanner/bin/sonar-scanner -Dsonar.login=2b321dd18b45751ca0fa5986d14a18d98f450eee"
+            sh "/sonarqube-scanner/bin/sonar-scanner -Dsonar.login=f91bc8237ef41633899676913e3fc61d481540b5"
         }
       }
     stage('Gated promotion to staging project') {
