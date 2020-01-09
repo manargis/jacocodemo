@@ -13,7 +13,7 @@ pipeline {
         script {
           sh "mvn sonar:sonar \
           -Dsonar.host.url=https://sonarqube-myproject-manargis.osp-apps.k4it.xyz \
-          -Dsonar.login=72d91a0d87299290db6853443951ff45ea6a1391"
+          -Dsonar.login=f91bc8237ef41633899676913e3fc61d481540b5"
          }
       }
     }
