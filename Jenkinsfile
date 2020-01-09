@@ -8,6 +8,13 @@ pipeline {
         sh "mvn install"
       }
     }
+    stage('Code Analysis') {
+      steps {
+        script {
+          sh "${mvnCmd} sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -DskipTests=true"
+         }
+      }
+    }
     stage('Create Image Builder') {
       when {
         expression {
