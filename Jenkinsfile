@@ -11,7 +11,9 @@ pipeline {
     stage('Code Analysis') {
       steps {
         script {
-          sh "mvn sonar:sonar -Dsonar.host.url=http://sonarqube:9000 -DskipTests=true"
+          sh "mvn sonar:sonar \
+          -Dsonar.host.url=https://sonarqube-myproject-manargis.osp-apps.k4it.xyz \
+          -Dsonar.login=72d91a0d87299290db6853443951ff45ea6a1391"
          }
       }
     }
