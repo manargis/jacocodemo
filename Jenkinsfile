@@ -11,7 +11,7 @@ pipeline {
     stage('Code Analysis') {
       steps {
         script {
-          sh "mvn sonar:sonar -Dsonar.host.url=http://sonarqube-myproject-manargis.osp-apps.k4it.xyz -Dsonar.login=admin -Dsonar.password=admin -Djavax.net.ssl.trustStore=/usr/bin/local.keystore -Djavax.net.ssl.trustStorePassword=changeit"
+          sh "mvn sonar:sonar -Dsonar.host.url=http://sonarqube-myproject-manargis.osp-apps.k4it.xyz -Dsonar.login=admin -Dsonar.password=admin"
          }
       }
     }    
@@ -93,7 +93,7 @@ pipeline {
     stage('Scan Project') {
 		agent { label 'sonar' }
         steps {
-            sh "/sonarqube-scanner/bin/sonar-scanner -Dsonar.login=f91bc8237ef41633899676913e3fc61d481540b5"
+            sh "/sonarqube-scanner/bin/sonar-scanner -Dsonar.host.url=http://sonarqube-myproject-manargis.osp-apps.k4it.xyz -Dsonar.login=f91bc8237ef41633899676913e3fc61d481540b5"
         }
       }
     stage('Gated promotion to staging project') {
