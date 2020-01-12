@@ -8,13 +8,7 @@ pipeline {
         sh "mvn install"
       }
     }
-    stage('Code Analysis') {
-      steps {
-        script {
-          sh "mvn sonar:sonar -Dsonar.host.url=http://sonarqube-myproject-manargis.osp-apps.k4it.xyz -Dsonar.login=admin -Dsonar.password=admin"
-         }
-      }
-    }    
+    
     stage('Create Image Builder') {
       when {
         expression {
